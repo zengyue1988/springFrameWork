@@ -15,6 +15,7 @@ public class Application {
 		System.out.println("*****");
 		System.out.println("**123**");
 		System.out.println("!!!!!");
+		System.out.println("new new new");
 		System.out.println(helloService.sayHello());
 	}
 
