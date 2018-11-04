@@ -14,6 +14,7 @@ public class Application {
 		HelloService helloService = context.getBean("helloService", HelloService.class);
 		System.out.println("*****");
 		System.out.println("**123**");
+		System.out.println("!!!!!");
 		System.out.println(helloService.sayHello());
 	}
 
