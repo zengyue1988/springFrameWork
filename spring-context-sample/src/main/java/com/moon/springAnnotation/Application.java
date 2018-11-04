@@ -13,6 +13,7 @@ public class Application {
 		ApplicationContext context = new ClassPathXmlApplicationContext("/com/moon/springAnnotation/resources/*.xml");
 		HelloService helloService = context.getBean("helloService", HelloService.class);
 		System.out.println("*****");
+		System.out.println("**123**");
 		System.out.println(helloService.sayHello());
 	}
 
