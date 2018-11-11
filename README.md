@@ -1,5 +1,5 @@
-# jdk 1.8.0_20
-# maven 3.5.4
+jdk 1.8.0_20
+maven 3.5.4
 # springFrameWork  
     IOC 
     beanwithXMLorAnnotion 
