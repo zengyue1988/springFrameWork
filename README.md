@@ -1,4 +1,4 @@
-# jdk 1.6.0_13
+# jdk 1.8.0_20
 # maven 3.5.4
 # springFrameWork  IOC beanwithXMLorAnnotion beanscope 
 # springboot   
