@@ -17,3 +17,6 @@ maven 3.5.4
 # Access data with JDBCTemplate
     executable    mvn spring-boot:run
                   mvn clean packaage     java -jar target/gs-relational-data-access-0.1.0.jar
+# Managing transactions
+    executable    mvn spring-boot:run
+                  mvn clean packaage     java -jar target/gs-managing-transactions-0.1.0.jar
