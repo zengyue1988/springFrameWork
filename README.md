@@ -20,3 +20,7 @@ maven 3.5.4
 # Managing transactions
     executable    mvn spring-boot:run
                   mvn clean packaage     java -jar target/gs-managing-transactions-0.1.0.jar
+# Cache
+    Cacheable, CachePut and CacheEvict. 
+    executable    mvn spring-boot:run
+                  mvn clean packaage     java -jar target/gs-managing-transactions-0.1.0.jar
