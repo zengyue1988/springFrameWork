@@ -28,3 +28,5 @@ maven 3.5.4
     server port 8881
 # Junit 
     MockMvc
+# Java8
+    lambda, stream
