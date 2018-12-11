@@ -29,4 +29,4 @@ maven 3.5.4
 # Junit 
     MockMvc
 # Java8
-    lambda, stream
+    lambda, stream, method reference, functional interface, default method
