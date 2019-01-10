@@ -1,2 +1,6 @@
 server:
     port: 8881
+    servlet: 
+      context-path: /mysecurity
+
+security.basic.enabled: false
