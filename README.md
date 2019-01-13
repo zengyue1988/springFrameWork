@@ -7,10 +7,6 @@ maven 3.5.4
 # springboot   
     executable    mvn spring-boot:run
                   mvn clean packaage     java -jar target/gs-rest-service-0.1.0.jar
-# Access data with mySQL
-    hibernate ddl auto : none, update, create, create-drop
-    executable    mvn spring-boot:run
-                  mvn clean packaage     java -jar target/gs-accessing-data-mysql-0.1.0.jar
 # Access data with JPA
     executable    mvn spring-boot:run
                   mvn clean packaage     java -jar target/gs-accessing-data-jpa-0.1.0.jar
@@ -30,3 +26,5 @@ maven 3.5.4
     MockMvc
 # Java8
     lambda, stream, method reference, functional interface, default method, optional, date, base64
+# Spring security
+    
