@@ -10,4 +10,6 @@ public interface CustomerRepository extends CrudRepository<Customer, Long>{
 
 	List<Customer> findByLastName(String lastName);
 	
+	Iterable<Customer> findByLastNameAndFirstName(String lastName, String firstName);
+	
 }
