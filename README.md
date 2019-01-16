@@ -8,6 +8,8 @@ maven 3.5.4
     executable    mvn spring-boot:run
                   mvn clean packaage     java -jar target/gs-rest-service-0.1.0.jar
 # Access data with JPA
+    one to one (one way)  
+    one to many (one way)
     executable    mvn spring-boot:run
                   mvn clean packaage     java -jar target/gs-accessing-data-jpa-0.1.0.jar
 # Access data with JDBCTemplate
