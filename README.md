@@ -1,17 +1,20 @@
 jdk 1.8.0_20
 maven 3.5.4
+executable    mvn spring-boot:run
+              mvn clean packaage     java -jar target/gs-rest-service-0.1.0.jar
 # springFrameWork  
-    IOC 
+    IOC        
     beanwithXMLorAnnotion 
     beanscope 
+        singleton prototype request session application websocket
 # springboot   
-    executable    mvn spring-boot:run
-                  mvn clean packaage     java -jar target/gs-rest-service-0.1.0.jar
+    @PostMapping @GetMapping @PutMapping @DeleteMapping @RequestMapping
+    @RequestParam @PathVariable
 # Access data with JPA
-    one to one (one way)  
+    one to one (one way, two way(mappedby))    
     one to many (one way)
-    executable    mvn spring-boot:run
-                  mvn clean packaage     java -jar target/gs-accessing-data-jpa-0.1.0.jar
+    two way find, set null to block cascade     
+    two way delete, if CascadeType.REMOVE then remove owning table and inverse table, if CascadeType.ALL then remove inverse table and foreign exchange key from owing table.
 # Access data with JDBCTemplate
     executable    mvn spring-boot:run
                   mvn clean packaage     java -jar target/gs-relational-data-access-0.1.0.jar
