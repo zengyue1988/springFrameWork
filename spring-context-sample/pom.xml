@@ -25,34 +25,30 @@
 	</properties>
 	
 	<dependencies>
+		<!-- springboot -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
 		<dependency>
         	<groupId>org.springframework.boot</groupId>
         	<artifactId>spring-boot-starter-web</artifactId>
  		</dependency>
- 		
  		<!-- JPA Data (We are going to use Repositories, Entities, Hibernate, etc...) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-        
         <!-- Use MySQL Connector-J -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
-        
         <!-- add security support -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -63,12 +59,34 @@
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- add fast json support -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.15</version>
         </dependency>
+        <!-- add swagger support -->
+        <dependency>
+        	<groupId>io.springfox</groupId>
+        	<artifactId>springfox-swagger2</artifactId>
+        	<version>2.9.2</version>
+        </dependency>
+        <dependency>
+        	<groupId>io.springfox</groupId>
+        	<artifactId>springfox-swagger-ui</artifactId>
+        	<version>2.9.2</version>
+        </dependency>
 	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>20.0</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<plugins>
