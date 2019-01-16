@@ -10,6 +10,7 @@ executable    mvn spring-boot:run
 # springboot   
     @PostMapping @GetMapping @PutMapping @DeleteMapping @RequestMapping
     @RequestParam @PathVariable
+    swagger : http://localhost:8881/swagger-ui.html#
 # Access data with JPA
     one to one (one way, two way(mappedby))    
     one to many (one way)
