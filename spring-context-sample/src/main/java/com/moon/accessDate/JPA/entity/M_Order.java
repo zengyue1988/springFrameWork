@@ -32,6 +32,9 @@ public class M_Order {
 	private String remark;
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private Set<M_Product> productList = new HashSet<M_Product>();
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="ORDER_ID", referencedColumnName="id")
+	private Set<M_Address> addressList = new HashSet<M_Address>();
 	private Date orderDate;
 	private Integer orderStatus;
 	
@@ -82,6 +85,12 @@ public class M_Order {
 	}
 	public void setOrderStatus(Integer orderStatus) {
 		this.orderStatus = orderStatus;
+	}
+	public Set<M_Address> getAddressList() {
+		return addressList;
+	}
+	public void setAddressList(Set<M_Address> addressList) {
+		this.addressList = addressList;
 	}
 
 }

@@ -2,11 +2,15 @@ package com.moon.accessDate.JPA.entity;
 
 import java.math.BigDecimal;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +25,9 @@ public class M_Product {
 	private BigDecimal productPrice;
 	@Column(name="PRODUCT_TYPE", nullable=false, length=16)
 	private Integer productType;
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="DETAILS_ID", referencedColumnName="id", updatable = true)
+	private M_ProductDetails productDetails;
 	
 	public Integer getId() {
 		return id;
@@ -45,6 +52,12 @@ public class M_Product {
 	}
 	public void setProductType(Integer productType) {
 		this.productType = productType;
+	}
+	public M_ProductDetails getProductDetails() {
+		return productDetails;
+	}
+	public void setProductDetails(M_ProductDetails productDetails) {
+		this.productDetails = productDetails;
 	}
 
 }
