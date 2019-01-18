@@ -15,8 +15,12 @@ executable    mvn spring-boot:run
     ddl-auto: none, update, create, create-drop
     one to one (one way, two way(mappedby))    
     one to many (one way, two way(mappedby))
+    many to one (two way(mappedby))
+    many to many (two way(mappedby jointable))
     two way find, set null to block cascade or for MVC call, set @JsonIgnoreProperties(value= {"product"}) to avoid overstack    
     two way delete, if CascadeType.REMOVE then remove owning table and inverse table, if CascadeType.ALL then remove inverse table and foreign exchange key from owing table.  CascadeType.REMOVE = CascadeType.ALL + orphanRemoval=true
+    Specification
+      And
 # Access data with JDBCTemplate
     executable    mvn spring-boot:run
                   mvn clean packaage     java -jar target/gs-relational-data-access-0.1.0.jar
