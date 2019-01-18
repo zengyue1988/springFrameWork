@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="M_PRODUCT", schema="moonschema")
 public class M_Product {
@@ -25,6 +27,7 @@ public class M_Product {
 	private BigDecimal productPrice;
 	@Column(name="PRODUCT_TYPE", nullable=false, length=16)
 	private Integer productType;
+	@JsonIgnoreProperties(value= {"product"})
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="DETAILS_ID", referencedColumnName="id", updatable = true)
 	private M_ProductDetails productDetails;

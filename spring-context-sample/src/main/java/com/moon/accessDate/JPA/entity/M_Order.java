@@ -12,9 +12,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="M_ORDER", schema="moonschema")
@@ -35,6 +40,17 @@ public class M_Order {
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="ORDER_ID", referencedColumnName="id")
 	private Set<M_Address> addressList = new HashSet<M_Address>();
+	@JsonIgnoreProperties(value= {"order"})
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="ORDER_ID")
+	private Set<M_Coupon> couponList = new HashSet<M_Coupon>();
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="FINAL_ORDER_ID", referencedColumnName="id")
+	private M_FinalOrder finalOrder;
+	@JsonIgnoreProperties(value= {"orderList"})
+	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinTable(name="M_ORDER_AGENT_LIST", joinColumns= {@JoinColumn(name="ORDER_ID", referencedColumnName="id")},inverseJoinColumns= {@JoinColumn(name="AGENT_ID", referencedColumnName="id")})
+	private Set<M_Agent> agentList = new HashSet<M_Agent>();
 	private Date orderDate;
 	private Integer orderStatus;
 	
@@ -91,6 +107,24 @@ public class M_Order {
 	}
 	public void setAddressList(Set<M_Address> addressList) {
 		this.addressList = addressList;
+	}
+	public Set<M_Coupon> getCouponList() {
+		return couponList;
+	}
+	public void setCouponList(Set<M_Coupon> couponList) {
+		this.couponList = couponList;
+	}
+	public M_FinalOrder getFinalOrder() {
+		return finalOrder;
+	}
+	public void setFinalOrder(M_FinalOrder finalOrder) {
+		this.finalOrder = finalOrder;
+	}
+	public Set<M_Agent> getAgentList() {
+		return agentList;
+	}
+	public void setAgentList(Set<M_Agent> agentList) {
+		this.agentList = agentList;
 	}
 
 }

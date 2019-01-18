@@ -18,7 +18,7 @@ public class M_ProductDetails {
 	private Integer id;
 	@Column(name="PRODUCT_DESCRIPTION", nullable=false, length=255)
 	private String productDescription;
-	@OneToOne(mappedBy="productDetails", cascade= {CascadeType.PERSIST, CascadeType.REMOVE}, fetch=FetchType.LAZY)
+	@OneToOne(mappedBy="productDetails",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	private M_Product product;
 	
 	public Integer getId() {
