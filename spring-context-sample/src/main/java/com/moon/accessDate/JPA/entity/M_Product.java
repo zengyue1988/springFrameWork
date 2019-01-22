@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -31,6 +32,8 @@ public class M_Product {
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="DETAILS_ID", referencedColumnName="id", updatable = true)
 	private M_ProductDetails productDetails;
+	@Version
+	private int version;
 	
 	public Integer getId() {
 		return id;
@@ -61,6 +64,12 @@ public class M_Product {
 	}
 	public void setProductDetails(M_ProductDetails productDetails) {
 		this.productDetails = productDetails;
+	}
+	public int getVersion() {
+		return version;
+	}
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 }

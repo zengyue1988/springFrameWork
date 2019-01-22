@@ -53,6 +53,7 @@ public class M_Order {
 	private Set<M_Agent> agentList = new HashSet<M_Agent>();
 	private Date orderDate;
 	private Integer orderStatus;
+	private Integer orderType;
 	
 	public Integer getId() {
 		return id;
@@ -125,6 +126,12 @@ public class M_Order {
 	}
 	public void setAgentList(Set<M_Agent> agentList) {
 		this.agentList = agentList;
+	}
+	public Integer getOrderType() {
+		return orderType;
+	}
+	public void setOrderType(Integer orderType) {
+		this.orderType = orderType;
 	}
 
 }

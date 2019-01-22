@@ -2,7 +2,9 @@ package com.moon.springBoot.controller;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,11 +47,14 @@ public class GreetingController {
     		@ApiResponse(code=404, message="api not found"),
     		@ApiResponse(code=500, message="Server error"),
     })
-	@RequestMapping("/customer/new/{customerNo}")
+	@PostMapping("/customer/new/{customerNo}")
 	public @ResponseBody Greeting createCustomer(
 			@PathVariable("customerNo") Integer customerNo,
 			@RequestParam("firstName") String firstName,
-			@RequestParam(value="lastName",required=false,defaultValue="Moon") String lastName
+			@RequestParam(value="lastName",required=false,defaultValue="Moon") String lastName,
+			@RequestHeader("User-Agent") String userAgent,
+			@RequestBody Greeting greeting,
+			@CookieValue(value="JSESSIONID", defaultValue="") String sessionId
 			) {
 		return new Greeting(counter.incrementAndGet(),
                 String.format(template2, firstName, lastName, customerNo));
