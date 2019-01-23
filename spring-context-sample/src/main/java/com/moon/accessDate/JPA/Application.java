@@ -1,16 +1,10 @@
 package com.moon.accessDate.JPA;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.moon.accessDate.JPA.entity.M_Order;
-import com.alibaba.fastjson.JSONObject;
-import com.moon.accessDate.JPA.entity.M_Coupon;
 import com.moon.accessDate.JPA.repository.CouponRepository;
 import com.moon.accessDate.JPA.repository.OrderRepository;
 

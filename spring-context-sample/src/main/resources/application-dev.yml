@@ -1,0 +1,22 @@
+server:
+    port: 8881 
+    ##context-path: /mysecurity
+spring: 
+## none, update, create, create-drop
+## none This is the default for MySQL, no change to the database structure
+## update Hibernate changes the database according to the given Entity structures
+## create Creates the database every time, but don\u2019t drop it when close.
+## create-drop Creates the database then drops it when the SessionFactory closes.
+    jpa: 
+        hibernate: 
+            ddl-auto: none
+        show-sql: true
+        properties: 
+            format_sql: true
+    datasource: 
+        url: jdbc:mysql://localhost:3306/moonschema
+        username: root
+        password: zy19880330
+security: 
+    basic: 
+        enabled: false
