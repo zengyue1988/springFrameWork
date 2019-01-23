@@ -9,7 +9,7 @@ executable    mvn spring-boot:run
         singleton prototype request session application websocket
 # springboot   
     @PostMapping @GetMapping @PutMapping @DeleteMapping @RequestMapping
-    @RequestParam @PathVariable @RequestHeader @RequestBody
+    @RequestParam @PathVariable @RequestHeader @RequestBody @CookieValue
     swagger : http://localhost:8881/swagger-ui.html#
 # Access data with JPA
     ddl-auto: none, update, create, create-drop
@@ -20,7 +20,9 @@ executable    mvn spring-boot:run
     two way find, set null to block cascade or for MVC call, set @JsonIgnoreProperties(value= {"product"}) to avoid overstack    
     two way delete, if CascadeType.REMOVE then remove owning table and inverse table, if CascadeType.ALL then remove inverse table and foreign exchange key from owing table.  CascadeType.REMOVE = CascadeType.ALL + orphanRemoval=true
     Specification
-      And
+      And Or Like notLike 
+    @Query(hql, sql) @Transactional @Modifying 
+    @Version
 # Access data with JDBCTemplate
     executable    mvn spring-boot:run
                   mvn clean packaage     java -jar target/gs-relational-data-access-0.1.0.jar
@@ -33,6 +35,9 @@ executable    mvn spring-boot:run
                   mvn clean packaage     java -jar target/gs-managing-transactions-0.1.0.jar
 # YAML
     server port 8881
+    jpa
+    profile
+    datasource
 # Junit 
     MockMvc
 # Java8
