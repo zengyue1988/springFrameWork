@@ -20,24 +20,15 @@ executable    mvn spring-boot:run
     two way find, set null to block cascade or for MVC call, set @JsonIgnoreProperties(value= {"product"}) to avoid overstack    
     two way delete, if CascadeType.REMOVE then remove owning table and inverse table, if CascadeType.ALL then remove inverse table and foreign exchange key from owing table.  CascadeType.REMOVE = CascadeType.ALL + orphanRemoval=true
     Specification
-      And Or Like notLike 
+      And Or Like notLike is/equals between lessThan lessThanEqual greaterThan greaterThanEqual after before isNull isNotNull
+      startingWith endingWith containing in notIn ignoreCase
     @Query(hql, sql) @Transactional @Modifying 
     @Version
+    @Lock   OPTIMISTIC OPTIMISTIC_FORCE_INCREMENT PESSIMITIC_READ PESSIMITIC_WRITE PESSIMITIC_FORCE_INCREMENT NONE
 # Access data with JDBCTemplate
-    executable    mvn spring-boot:run
-                  mvn clean packaage     java -jar target/gs-relational-data-access-0.1.0.jar
 # Managing transactions
-    executable    mvn spring-boot:run
-                  mvn clean packaage     java -jar target/gs-managing-transactions-0.1.0.jar
 # Cache
     Cacheable, CachePut and CacheEvict. 
-    executable    mvn spring-boot:run
-                  mvn clean packaage     java -jar target/gs-managing-transactions-0.1.0.jar
-# YAML
-    server port 8881
-    jpa
-    profile
-    datasource
 # Junit 
     MockMvc
 # Java8
