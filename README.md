@@ -25,10 +25,11 @@ executable    mvn spring-boot:run
     @Query(hql, sql) @Transactional @Modifying 
     @Version
     @Lock   OPTIMISTIC OPTIMISTIC_FORCE_INCREMENT PESSIMITIC_READ PESSIMITIC_WRITE PESSIMITIC_FORCE_INCREMENT NONE
+    @Cache  Cacheable, CachePut and CacheEvict. 
+    @Transaction   
+      readyOnly
+      propagation      REQUIRED NOT_SUPPORTED  REQUIRES_NEW  MANDATORY NEVER  SUPPORTS
 # Access data with JDBCTemplate
-# Managing transactions
-# Cache
-    Cacheable, CachePut and CacheEvict. 
 # Junit 
     MockMvc
 # Java8
