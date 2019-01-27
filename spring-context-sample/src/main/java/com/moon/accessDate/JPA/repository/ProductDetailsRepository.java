@@ -25,5 +25,7 @@ public interface ProductDetailsRepository extends CrudRepository<M_ProductDetail
 	@Lock(value = LockModeType.PESSIMISTIC_WRITE)
 	@Query("select pd from M_ProductDetails pd where pd.id = :productDetailsId")
 	M_ProductDetails queryProductDetailsByIdLocked(@Param("productDetailsId") Integer productDetailsId);
+	
+	M_ProductDetails findById(Integer id);
 
 }
