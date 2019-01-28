@@ -2,6 +2,8 @@ package com.moon.springBoot.controller;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+import javax.validation.Valid;
+
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,7 +42,6 @@ public class GreetingController {
         return new Greeting(counter.incrementAndGet(),
                             String.format(template, name));
     }
-
     @ApiOperation(value = "create a customer")
     @ApiResponses(value= {
     		@ApiResponse(code=400, message="Invalid request"),
@@ -58,6 +59,15 @@ public class GreetingController {
 			) {
 		return new Greeting(counter.incrementAndGet(),
                 String.format(template2, firstName, lastName, customerNo));
+	}
+    @ApiOperation(value = "create a customer")
+    @ApiResponses(value= {
+    		@ApiResponse(code=400, message="Invalid request"),
+    		@ApiResponse(code=404, message="api not found"),
+    		@ApiResponse(code=500, message="Server error"),
+    })
+	@PostMapping("/moon/valid/requestBody")
+	public @ResponseBody ValidMoon getValidMoon(@Valid @RequestBody ValidMoon moonRequest) {
 	}
 
 }
