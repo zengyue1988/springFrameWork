@@ -10,6 +10,8 @@ executable    mvn spring-boot:run
 # springboot   
     @PostMapping @GetMapping @PutMapping @DeleteMapping @RequestMapping
     @RequestParam @PathVariable @RequestHeader @RequestBody @CookieValue
+    @Valid
+      @NotBlank @Size @Pattern @NotNull @Min @Max @DecimalMin @DecimalMax @Email @URL @Past @Future @AssertFalse
     swagger : http://localhost:8881/swagger-ui.html#
 # Access data with JPA
     ddl-auto: none, update, create, create-drop
