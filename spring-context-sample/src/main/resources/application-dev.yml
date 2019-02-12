@@ -19,4 +19,4 @@ spring:
         password: zy19880330
 security: 
     basic: 
-        enabled: false
+        enabled: true

@@ -2,6 +2,7 @@ package com.moon.springBoot.bean;
 
 import java.util.Date;
 
+import javax.validation.constraints.AssertFalse;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Future;
@@ -38,6 +39,8 @@ public class ValidMoon {
 	private Date birthday;
 	@Future
 	private Date accountExpireDate;
+	@AssertFalse
+	private boolean accountActive;
 	
 	public String getUserName() {
 		return userName;

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moon.springBoot.bean.Greeting;
+import com.moon.springBoot.bean.ValidMoon;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -68,6 +69,7 @@ public class GreetingController {
     })
 	@PostMapping("/moon/valid/requestBody")
 	public @ResponseBody ValidMoon getValidMoon(@Valid @RequestBody ValidMoon moonRequest) {
+		return moonRequest;
 	}
 
 }
