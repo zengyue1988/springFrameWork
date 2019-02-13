@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LoginController {
 	
-    @GetMapping("/login")
+    @GetMapping("/login.html")
     public String loginPage() {
         return "This is login page, you must login to proceed";
     }
@@ -33,6 +33,11 @@ public class LoginController {
     @GetMapping("/login-error")
     public String loginError() {
         return "This is login error page";
+    }
+    
+    @GetMapping("/user/index")
+    public String userIndex() {
+        return "This is user index page";
     }
 
 }

@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.moon.springSecurity.fast.bean.M_Permission;
@@ -25,6 +26,12 @@ public class UserService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		M_User user = userRepository.findByUsername(username);
+		
+//		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//		String encodedPassword = passwordEncoder.encode(user.getPassword().trim());
+//		user.setPassword(encodedPassword);
+//		userRepository.save(user);
+		
 		List<SimpleGrantedAuthority> authrities = new ArrayList<SimpleGrantedAuthority>();
 		for (M_Role role : user.getRoleList()) {
 			for (M_Permission permission : role.getPermissionList()) {

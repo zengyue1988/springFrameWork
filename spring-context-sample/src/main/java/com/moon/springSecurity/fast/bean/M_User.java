@@ -26,7 +26,7 @@ public class M_User {
 	private Integer id;
 	@Column(name="USERNAME", nullable=false, length=16)
 	private String username;
-	@Column(name="PASSWORD", nullable=false, length=16)
+	@Column(name="PASSWORD", nullable=false, length=96)
 	private String password;
 	@JsonIgnoreProperties(value= {"userList"})
 	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
