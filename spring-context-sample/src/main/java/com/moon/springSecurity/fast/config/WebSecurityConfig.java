@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.moon.springSecurity.fast.authentication.UserAuthenticationProvider;
 import com.moon.springSecurity.fast.service.UserService;
 
 @Configuration
@@ -19,8 +20,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private UserAuthenticationProvider userAuthenticationProvider;
 	
 	boolean dynamicValidation = true;
+	boolean customValidation = true;
 	
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -45,8 +49,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
 		if (dynamicValidation) {
-	    	//auth.userDetailsService(userService);
-	    	auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
+			if (customValidation) {
+				auth.authenticationProvider(userAuthenticationProvider);
+			} else {
+		    	//auth.userDetailsService(userService);
+		    	auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
+			}
     	} else {
     		auth.inMemoryAuthentication()
     		    .withUser("admin").password("123456").roles("USER")

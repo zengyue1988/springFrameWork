@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.moon.springSecurity.fast.bean.B_User;
 import com.moon.springSecurity.fast.bean.M_Permission;
 import com.moon.springSecurity.fast.bean.M_Role;
 import com.moon.springSecurity.fast.bean.M_User;
@@ -25,20 +26,25 @@ public class UserService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		M_User user = userRepository.findByUsername(username);
-		
-//		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//		String encodedPassword = passwordEncoder.encode(user.getPassword().trim());
-//		user.setPassword(encodedPassword);
-//		userRepository.save(user);
-		
-		List<SimpleGrantedAuthority> authrities = new ArrayList<SimpleGrantedAuthority>();
-		for (M_Role role : user.getRoleList()) {
-			for (M_Permission permission : role.getPermissionList()) {
-				authrities.add(new SimpleGrantedAuthority(permission.getPermissionCode()));
+		if ("Moon".equals(username)) {
+			B_User user = new B_User("Moon", "123456", "ADMIN", true, true, true, true);
+			return user;
+		} else {
+			M_User user = userRepository.findByUsername(username);
+			
+//			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//			String encodedPassword = passwordEncoder.encode(user.getPassword().trim());
+//			user.setPassword(encodedPassword);
+//			userRepository.save(user);
+			
+			List<SimpleGrantedAuthority> authrities = new ArrayList<SimpleGrantedAuthority>();
+			for (M_Role role : user.getRoleList()) {
+				for (M_Permission permission : role.getPermissionList()) {
+					authrities.add(new SimpleGrantedAuthority(permission.getPermissionCode()));
+				}
 			}
+			return new User(username, user.getPassword(), authrities);
 		}
-		return new User(username, user.getPassword(), authrities);
 	}
 
 }
