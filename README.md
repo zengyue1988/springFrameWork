@@ -37,4 +37,7 @@ executable    mvn spring-boot:run
 # Java8
     lambda, stream, method reference, functional interface, default method, optional, date, base64
 # Spring security
-    
+    build a secure application
+    add method level authorty 
+    inMemoryAuthentication and userDetailsService (password encoder)
+    custom login page
