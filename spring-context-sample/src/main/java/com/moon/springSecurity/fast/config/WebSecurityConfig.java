@@ -11,6 +11,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.moon.springSecurity.fast.authentication.UserAuthenticationProvider;
+import com.moon.springSecurity.fast.authentication.handler.UserAuthenticationFailureHandler;
+import com.moon.springSecurity.fast.authentication.handler.UserAuthenticationSuccessHandler;
 import com.moon.springSecurity.fast.service.UserService;
 
 @Configuration
@@ -22,6 +24,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	private UserService userService;
 	@Autowired
 	private UserAuthenticationProvider userAuthenticationProvider;
+	@Autowired
+	private UserAuthenticationSuccessHandler userAuthenticationSuccessHandler;
+	@Autowired
+	private UserAuthenticationFailureHandler userAuthenticationFailureHandler;
 	
 	boolean dynamicValidation = true;
 	boolean customValidation = true;
@@ -36,7 +42,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .and()
             .formLogin()
             	.failureUrl("/api/v1/login-error")
+            	.failureHandler(userAuthenticationFailureHandler)                 // custom failure handler
                 .loginPage("/api/v1/login.html")                                // form-based authentication is enabled with a custom login page and failure url
+                .successHandler(userAuthenticationSuccessHandler)                                // custom success handler
                 .loginProcessingUrl("/login/form")                           // login page submit url
                 .permitAll()
                 .and()
