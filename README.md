@@ -40,4 +40,4 @@ executable    mvn spring-boot:run
     build a secure application (/ with method level authorty) 
     inMemoryAuthentication and userDetailsService (password encoder)
     custom login page      /login/form
-    custom login           AuthenticationProvider
+    custom login           AuthenticationProvider    success and failure handler
