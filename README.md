@@ -41,3 +41,6 @@ executable    mvn spring-boot:run
     inMemoryAuthentication and userDetailsService (password encoder)
     custom login page      /login/form
     custom login           AuthenticationProvider    success and failure handler
+    custom role base access control service
+    remember me support    data:{username:"Kumar",password:"123456","remember-me": "true"},
+    
