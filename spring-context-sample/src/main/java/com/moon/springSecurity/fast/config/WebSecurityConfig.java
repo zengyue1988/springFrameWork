@@ -1,6 +1,9 @@
 package com.moon.springSecurity.fast.config;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -9,6 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 import com.moon.springSecurity.fast.authentication.UserAuthenticationProvider;
 import com.moon.springSecurity.fast.authentication.handler.UserAuthenticationFailureHandler;
@@ -28,9 +33,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	private UserAuthenticationSuccessHandler userAuthenticationSuccessHandler;
 	@Autowired
 	private UserAuthenticationFailureHandler userAuthenticationFailureHandler;
+	@Autowired
+	private DataSource dataSource;
 	
 	boolean dynamicValidation = true;
-	boolean customValidation = true;
+	boolean customValidation = false;
 	
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -38,8 +45,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
             .authorizeRequests()
                 .antMatchers("/api/v1/login","/api/v1/pre/**").permitAll()   // request matched against /pre/** and /login are fully accessible
                 .antMatchers("/api/v1/user/**").hasRole("USER")                     // request matched against /user/** require a user to be authenticated and must be associated to the USER role
-                .anyRequest().authenticated()                                // other URL access must be validated
+                .anyRequest()
+//                .access("@rbacService.hasPermission(request, authentication)")
+                .authenticated()                                // other URL access must be validated
                 .and()
+            .rememberMe()
+            	.rememberMeParameter("remember-me").userDetailsService(userService)
+            	.tokenRepository(persistentTokenRepository())
+            	.tokenValiditySeconds(6000)
+            	.and()
             .formLogin()
             	.failureUrl("/api/v1/login-error")
             	.failureHandler(userAuthenticationFailureHandler)                 // custom failure handler
@@ -71,7 +85,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     	}
     }
     
+    @Bean
     public PasswordEncoder passwordEncoder() {
     	return new BCryptPasswordEncoder();
+    }
+    
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository() {
+    	JdbcTokenRepositoryImpl tokenRepossitory = new JdbcTokenRepositoryImpl();
+//    	tokenRepossitory.setCreateTableOnStartup(true);   run in first time
+    	tokenRepossitory.setDataSource(dataSource);
+    	return tokenRepossitory;
     }
 }
