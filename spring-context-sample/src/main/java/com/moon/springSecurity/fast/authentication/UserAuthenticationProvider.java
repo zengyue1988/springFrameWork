@@ -1,21 +1,23 @@
 package com.moon.springSecurity.fast.authentication;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.authentication.LockedException;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
-import com.moon.springSecurity.fast.bean.B_User;
-import com.moon.springSecurity.fast.service.UserService;
+import com.moon.springSecurity.fast.service.UserAttemptsService;
 
 @Component
-public class UserAuthenticationProvider implements AuthenticationProvider {
+public class UserAuthenticationProvider extends DaoAuthenticationProvider implements AuthenticationProvider {
 	
 	@Autowired
-	private UserService userService;
+	private UserAttemptsService userAttemptsService;
 
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -23,17 +25,32 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
 		String username = authentication.getName();                
 		String password = (String) authentication.getCredentials();
 		
-		B_User user = (B_User) userService.loadUserByUsername(username);
-		if (user !=null && user.getPassword().equals(password)) {
-			return new UsernamePasswordAuthenticationToken(user, password, user.getAuthorities());
-		} else {
-			throw new BadCredentialsException("bad credential");
+		try {
+			Authentication auth = super.authenticate(authentication);
+			// reset user attempts
+			userAttemptsService.resetUserAttempts(username);
+			return auth;
+		} catch (BadCredentialsException bce) {
+			userAttemptsService.updateFailureAttempts(username);
+			throw bce;
+	    } catch (LockedException le) {
+	    	throw le;
+	    } catch (Exception e) {
+			e.printStackTrace();
+			throw e;
 		}
 	}
 
 	@Override
 	public boolean supports(Class<?> authentication) {
 		return true;
+	}
+
+	@Override
+	@Autowired
+	@Qualifier("userService")
+	public void setUserDetailsService(UserDetailsService userDetailsService) {
+		super.setUserDetailsService(userDetailsService);
 	}
 
 }

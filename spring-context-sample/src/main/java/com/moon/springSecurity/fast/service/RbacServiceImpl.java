@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,9 @@ import com.moon.springSecurity.fast.repository.UserRepository;
 
 @Service(value="rbacService")
 public class RbacServiceImpl implements RbacService {
+	
+	@Value("${server.context-path}")
+	private String contextPath;
 	
 	private AntPathMatcher antPathMatcher = new AntPathMatcher();
 	@Autowired
@@ -33,7 +37,7 @@ public class RbacServiceImpl implements RbacService {
 			Set<String> urls = new HashSet<String>();
 			for (M_Role role : user.getRoleList()) {
 				for (M_Permission permission : role.getPermissionList()) {
-					urls.add(permission.getPermissionUrl());
+					urls.add(contextPath + permission.getPermissionUrl());
 				}
 			}
 			for (String url : urls) {

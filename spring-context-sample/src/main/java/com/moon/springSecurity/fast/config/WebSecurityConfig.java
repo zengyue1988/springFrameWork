@@ -37,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	private DataSource dataSource;
 	
 	boolean dynamicValidation = true;
-	boolean customValidation = false;
+	boolean customValidation = true;
 	
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -64,7 +64,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .and()
                 .csrf().disable()                                             // disable csrf validation for testing
             .logout()
-            	.logoutSuccessUrl("/api/v1/logout")
+            	.logoutUrl("/login/logout")                                  // logout ur;
+            	.logoutSuccessUrl("/api/v1/login.html")
                 .permitAll();
     }
     
@@ -72,6 +73,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
 		if (dynamicValidation) {
 			if (customValidation) {
+				userAuthenticationProvider.setPasswordEncoder(passwordEncoder());
 				auth.authenticationProvider(userAuthenticationProvider);
 			} else {
 		    	//auth.userDetailsService(userService);

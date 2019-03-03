@@ -1,6 +1,6 @@
 server:
     port: 8881 
-    ##context-path: /mysecurity
+    context-path: /moon
 spring: 
 ## none, update, create, create-drop
 ## none This is the default for MySQL, no change to the database structure
