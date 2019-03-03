@@ -43,4 +43,5 @@ executable    mvn spring-boot:run
     custom login           AuthenticationProvider    success and failure handler
     custom role base access control service
     remember me support    data:{username:"Kumar",password:"123456","remember-me": "true"},
-    
+    login and logout url
+    user attempts and lock
