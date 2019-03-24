@@ -45,3 +45,5 @@ executable    mvn spring-boot:run
     remember me support    data:{username:"Kumar",password:"123456","remember-me": "true"},
     login and logout url
     user attempts and lock
+# Spring Batch
+    reader processor writer listener step
