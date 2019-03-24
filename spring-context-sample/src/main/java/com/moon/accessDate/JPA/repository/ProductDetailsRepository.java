@@ -1,5 +1,7 @@
 package com.moon.accessDate.JPA.repository;
 
+import java.util.Optional;
+
 import javax.persistence.LockModeType;
 
 import org.springframework.data.jpa.repository.Lock;
@@ -26,6 +28,6 @@ public interface ProductDetailsRepository extends CrudRepository<M_ProductDetail
 	@Query("select pd from M_ProductDetails pd where pd.id = :productDetailsId")
 	M_ProductDetails queryProductDetailsByIdLocked(@Param("productDetailsId") Integer productDetailsId);
 	
-	M_ProductDetails findById(Integer id);
+	Optional<M_ProductDetails> findById(Integer id);
 
 }
