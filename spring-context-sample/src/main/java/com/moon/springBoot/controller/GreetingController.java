@@ -1,10 +1,13 @@
 package com.moon.springBoot.controller;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
 import javax.validation.Valid;
 
 import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alibaba.fastjson.JSONObject;
 import com.moon.springBoot.bean.Greeting;
 import com.moon.springBoot.bean.ValidMoon;
 
@@ -71,5 +75,12 @@ public class GreetingController {
 	public @ResponseBody ValidMoon getValidMoon(@Valid @RequestBody ValidMoon moonRequest) {
 		return moonRequest;
 	}
+    @CrossOrigin
+    @PostMapping("/moon/cors/jsonData")
+    public Map<String, Object> crossSiteRequest(@RequestBody JSONObject jsonParam) {
+    	System.out.println(jsonParam.toJSONString());
+    	Map<String, Object> result = new HashMap<String, Object>();
+		return result;
+    }
 
 }
