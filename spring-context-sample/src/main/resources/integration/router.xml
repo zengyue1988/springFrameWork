@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/integration"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+            http://www.springframework.org/schema/beans/spring-beans.xsd  
+            http://www.springframework.org/schema/integration  
+            http://www.springframework.org/schema/integration/spring-integration.xsd">
+
+	<channel id="inputChannel" />
+	<router input-channel="inputChannel" ref="routerService" method="sayWhat" />
+	
+	<service-activator input-channel="channelOne" ref="helloServiceOne" method="sayHello" />
+    <service-activator input-channel="channelTwo" ref="helloServiceTwo" method="sayHello" />
+	
+	<beans:bean id="routerService" class="com.moon.integration.router.router.MyRouterService" />
+    <beans:bean id="helloServiceOne" class="com.moon.integration.router.consumer.MyHelloServiceOne" />
+    <beans:bean id="helloServiceTwo" class="com.moon.integration.router.consumer.MyHelloServiceTwo" />
+
+</beans:beans>
