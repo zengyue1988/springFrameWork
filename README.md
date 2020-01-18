@@ -55,3 +55,6 @@ executable    mvn spring-boot:run
       "0 0/30 8-10 * * *" = 8:00, 8:30, 9:00, 9:30, 10:00 and 10:30 every day.
       "0 0 9-17 * * MON-FRI" = on the hour nine-to-five weekdays
       "0 0 0 25 12 ?" = every Christmas Day at midnight
+# Spring activemq
+# Spring Integration
+     channel -> service activator -> serivce Impl
