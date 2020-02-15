@@ -57,4 +57,8 @@ executable    mvn spring-boot:run
       "0 0 0 25 12 ?" = every Christmas Day at midnight
 # Spring activemq
 # Spring Integration
-     channel -> service activator -> serivce Impl
+     helloworld :　channel -> service activator -> serivce Impl
+     router : inputchannel -> router -> outputchannel1 -> service1
+                                     -> outputchannel2 -> service2
+              inputchannel -> router -> service-activator (outputchannel1) -> service1
+                                     -> service-activator (outputchannel2) -> service2
