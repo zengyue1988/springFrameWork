@@ -53,6 +53,8 @@ public interface OrderRepository extends CrudRepository<M_Order, Integer>{
 	Iterable<M_Order> findByCustomerNotIn(List<M_Customer> customers);
 	// ignore case
 	Iterable<M_Order> findByOrderNoIgnoreCase(String orderNo);
+	// order by
+	Iterable<M_Order> findAllByOrderByOrderDateDesc();
 	
 	@Query("select o from M_Order o, M_Customer c where o.customer.id = c.id and upper(c.customerName) = upper(?1) or o.orderStatus = ?2")
 	Iterable<M_Order> queryByCustomerNameAndOrderStatus(String customerName, Integer orderStatus);
@@ -60,7 +62,6 @@ public interface OrderRepository extends CrudRepository<M_Order, Integer>{
 	Iterable<M_Order> queryByCustomerNameAndOrderStatus2(String customerName, Integer orderStatus);
 	@Query(value = "select o.* from m_order o, m_customer c where o.customer_id = c.id and upper(c.customer_name) = upper(:customerName) or o.order_status = :orderStatus", nativeQuery = true)
 	Iterable<M_Order> queryByCustomerNameAndOrderStatus3(String customerName, Integer orderStatus);
-	
 	
 	@Transactional
 	@Modifying(clearAutomatically=true)
