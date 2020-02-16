@@ -53,8 +53,12 @@ public interface OrderRepository extends CrudRepository<M_Order, Integer>{
 	Iterable<M_Order> findByCustomerNotIn(List<M_Customer> customers);
 	// ignore case
 	Iterable<M_Order> findByOrderNoIgnoreCase(String orderNo);
-	// order by
+	
+	// order by 1
 	Iterable<M_Order> findAllByOrderByOrderDateDesc();
+	// order by 2
+	@Query("select o from M_Order o ORDER BY o.orderDate DESC")
+	Iterable<M_Order> queryAllByOrderByOrderDateDesc();
 	
 	@Query("select o from M_Order o, M_Customer c where o.customer.id = c.id and upper(c.customerName) = upper(?1) or o.orderStatus = ?2")
 	Iterable<M_Order> queryByCustomerNameAndOrderStatus(String customerName, Integer orderStatus);
