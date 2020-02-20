@@ -9,7 +9,7 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 
 @SpringBootApplication
-@ImportResource("/integration/router.xml")
+//@ImportResource("/integration/router.xml")
 public class Application {
 
 	public static void main(String[] args) {
