@@ -23,7 +23,8 @@ executable    mvn spring-boot:run
     two way delete, if CascadeType.REMOVE then remove owning table and inverse table, if CascadeType.ALL then remove inverse table and foreign exchange key from owing table.  CascadeType.REMOVE = CascadeType.ALL + orphanRemoval=true
     Specification
       And Or Like notLike is/equals between lessThan lessThanEqual greaterThan greaterThanEqual after before isNull isNotNull
-      startingWith endingWith containing in notIn ignoreCase
+      startingWith endingWith containing in notIn ignoreCase orderBy
+    JPA Sort
     @Query(hql, sql) @Transactional @Modifying 
     @Version
     @Lock   OPTIMISTIC OPTIMISTIC_FORCE_INCREMENT PESSIMITIC_READ PESSIMITIC_WRITE PESSIMITIC_FORCE_INCREMENT NONE
