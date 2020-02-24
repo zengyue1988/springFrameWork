@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/integration"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+            http://www.springframework.org/schema/beans/spring-beans.xsd  
+            http://www.springframework.org/schema/integration  
+            http://www.springframework.org/schema/integration/spring-integration.xsd">
+	
+	<beans:bean id="inputService" class="com.moon.integration.channelAdapter.input.MyInputService" />
+
+	<channel id="inboundChannel" />
+	
+	<inbound-channel-adapter ref="inputService" method="dummyInput" channel="inboundChannel">
+        <poller fixed-rate="5000" />
+    </inbound-channel-adapter>
+    
+    <!-- consumer -->
+    <service-activator input-channel="inboundChannel" ref="helloService" method="sayHello" />
+	
+	<beans:bean id="helloService" class="com.moon.integration.channelAdapter.input.MyHelloService" />
+	
+	
+	
+	<channel id="outboundChannel" />
+	
+	<outbound-channel-adapter method="dummyOuput" channel="outboundChannel">
+        <beans:bean class="com.moon.integration.channelAdapter.output.MyOutputService"/>
+    </outbound-channel-adapter>
+
+</beans:beans>
