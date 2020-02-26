@@ -63,3 +63,7 @@ executable    mvn spring-boot:run
                                      -> outputchannel2 -> service2
               inputchannel -> router -> service-activator (outputchannel1) -> service1
                                      -> service-activator (outputchannel2) -> service2
+     splitter : inputChannel -> splitter -> splitService -> speakerChannel -> speakerService
+     channelAdapter : inboundChannel(inbound-channel-adapter) -> helloService -> dummyInput <- inputService
+                      outboundChannel(outbound-channel-adapter) -> MyOutputService -> dummyOuput
+     fileChannelAdapter : file-channel(inbound-channel-adapter)-> print-channel -> printService -> file-channel(outbound-channel-adapter)
