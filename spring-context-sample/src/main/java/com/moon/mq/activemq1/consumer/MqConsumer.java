@@ -1,4 +1,4 @@
-package com.moon.mq.activemq.consumer;
+package com.moon.mq.activemq1.consumer;
 
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;

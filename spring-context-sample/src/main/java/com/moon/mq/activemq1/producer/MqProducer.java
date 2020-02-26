@@ -1,4 +1,4 @@
-package com.moon.mq.activemq.producer;
+package com.moon.mq.activemq1.producer;
 
 import javax.jms.Queue;
 

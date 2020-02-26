@@ -1,4 +1,4 @@
-package com.moon.mq.activemq.configuration;
+package com.moon.mq.activemq1.configuration;
 
 import javax.jms.Queue;
 

@@ -1,6 +1,6 @@
-server:
+server: 
     port: 8881 
-    context-path: /moon
+    context-path: /moon 
 spring: 
 ## none, update, create, create-drop
 ## none This is the default for MySQL, no change to the database structure
@@ -17,6 +17,16 @@ spring:
         url: jdbc:mysql://localhost:3306/moonschema
         username: root
         password: zy19880330
+    activemq: 
+        user: admin 
+        password: admin 
+        broker-url: tcp://127.0.0.1:61616 
+        pool: 
+            enabled: true
+            configuration: 
+                max-connections: 10
+queueName: publish.queue 
+topicName: publish.topic 
 security: 
     basic: 
-        enabled: true
+        enabled: false
