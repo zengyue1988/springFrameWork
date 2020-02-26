@@ -57,6 +57,7 @@ executable    mvn spring-boot:run
       "0 0 9-17 * * MON-FRI" = on the hour nine-to-five weekdays
       "0 0 0 25 12 ?" = every Christmas Day at midnight
 # Spring activemq
+     queue  topic  publisher subscriber
 # Spring Integration
      helloworld :　channel -> service activator -> serivce Impl
      router : inputchannel -> router -> outputchannel1 -> service1
