@@ -2,6 +2,19 @@ server:
     port: 8881 
     context-path: /moon 
 spring: 
+    mail: 
+        default-encoding: UTF-8 
+        host: smtp.163.com 
+        protocol: smtp 
+        username: bet_sweet_zy@163.com 
+        password: EXBFVFJCKVAUKTVF 
+        properties: 
+            from: bet_sweet_zy@163.com
+    smtp: 
+        auth: true 
+    starttls: 
+        enable: true 
+        required: true 
 ## none, update, create, create-drop
 ## none This is the default for MySQL, no change to the database structure
 ## update Hibernate changes the database according to the given Entity structures
