@@ -68,3 +68,10 @@ executable    mvn spring-boot:run
      channelAdapter : inboundChannel(inbound-channel-adapter) -> helloService -> dummyInput <- inputService
                       outboundChannel(outbound-channel-adapter) -> MyOutputService -> dummyOuput
      fileChannelAdapter : file-channel(inbound-channel-adapter)-> print-channel -> printService -> file-channel(outbound-channel-adapter)
+     aggregator
+     filter
+     transformer
+# Spring send mail
+     simple and attachment
+# Mybatis and Mybatis plus
+     
